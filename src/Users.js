@@ -29,6 +29,13 @@ const Users = () => (
     </Query>
 );
 
+// const updateUserCache = (cache, { data: { addFakeUsers } }) => {
+//     const data = cache.readQuery({ query: ROOT_QUERY });
+//     data.totalUsers += addFakeUsers.length;
+//     data.allUsers = [...data.allUsers, ...addFakeUsers];
+//     cache.writeQuery({ query: ROOT_QUERY, data });
+// };
+
 const UserList = ({ count, users, refetchUsers }) => (
     <div>
         <p>{count} Users</p>
@@ -37,6 +44,7 @@ const UserList = ({ count, users, refetchUsers }) => (
             mutation={ADD_FAKE_USERS_MUTATION}
             variables={{ count: 1 }}
             refetchQueries={[{ query: ROOT_QUERY }]}
+            // update={updateUserCache}
         >
             {(addFakeUsers) => (
                 <button onClick={addFakeUsers}>Add Fake Users</button>
